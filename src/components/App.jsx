@@ -18,15 +18,18 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    // const localData = localStorage.getItem('contacts');
-    // if (localData) this.setState({ contacts: JSON.parse(localData) });
-    // else this.setState({ contacts: contacts.contacts });
+    // Те що знаходиться в localeStorage будемо сетити в тому випадку якщо localData і її довжина більша ніж 0
+    const localData = localStorage.getItem('contacts');
+    const localeParse = JSON.parse(localData);
+    if (localData && localeParse.length > 0)
+      this.setState({ contacts: localeParse });
+    else this.setState({ contacts: contacts.contacts });
 
-    // Якщо результат парсингу в значенні null, то запишуться наші контакти.
-    this.setState({
-      contacts:
-        JSON.parse(localStorage.getItem('contacts')) ?? contacts.contacts,
-    });
+    // Якщо результат парсингу в значенні null undefined, то запишуться наші контакти.
+    // this.setState({
+    //   contacts:
+    //     JSON.parse(localStorage.getItem('contacts')) ?? contacts.contacts,
+    // });
   }
 
   componentDidUpdate(prevProps, prevState) {
