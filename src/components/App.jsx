@@ -17,6 +17,24 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    // const localData = localStorage.getItem('contacts');
+    // if (localData) this.setState({ contacts: JSON.parse(localData) });
+    // else this.setState({ contacts: contacts.contacts });
+
+    // Якщо результат парсингу в значенні null, то запишуться наші контакти.
+    this.setState({
+      contacts:
+        JSON.parse(localStorage.getItem('contacts')) ?? contacts.contacts,
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts.length !== this.state.contacts.length) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   formDeleteHandler = contactsId => {
     this.setState({
       contacts: this.state.contacts.filter(
