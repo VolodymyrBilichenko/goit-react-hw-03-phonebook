@@ -6,7 +6,7 @@ export const FilterStyle = styled.div`
 
     .filter__input{
         width: 100%;
-        max-width: 280px;
+        max-width: 290px;
         padding: 0 10px;
         border: none;
         outline: none;
